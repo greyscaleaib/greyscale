@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import fractal from "./assets/fractal.jpg";
-import greycon from "./assets/greycon.jpg";
-import cast from "./assets/cast.jpg";
+import fractalImage from "./assets/fractal.jpg";
+import greyconImage from "./assets/greycon.jpg";
+import castImage from "./assets/cast.jpg";
 
 // Main App Component
 const App = () => {
@@ -200,93 +200,122 @@ const MaterialsIntro = () => {
   );
 };
 
-// Product Showcase Section
+
 const ProductShowcase = () => {
   const productSeries = [
     {
       name: "Fractal Series",
-      description: "Sculptural concrete tiles with distinctive geometric patterns that create dramatic shadows and textures.",
-      items: ["Chisel", "PO-2", "Flamenco", "Piano", "Kingston Town", "Legion", "Otho", "Amazonia", "Jigsaw"],
-      image: fractal  // Ensure this is the correct imported image
+      description:
+        "Sculptural concrete tiles with distinctive geometric patterns that create dramatic shadows and textures.",
+      items: [
+        "Chisel", "PO-2", "Flamenco",
+        "Piano", "Kingston Town", "Legion",
+        "Otho", "Amazonia", "Jigsaw"
+      ],
+      image: fractalImage
     },
     {
       name: "GreyCon Panels",
-      description: "Ultra High-Performance Concrete panels with smooth, elegant finishes and superior structural properties.",
-      items: ["Float", "Wave", "Ando", "Manhattan", "Endless Fields", "Asymetric", "Savannah", "Urban Playground", "Visions of Johanna", "Awash"],
-      image: greycon
+      description:
+        "Ultra High-Performance Concrete panels with smooth, elegant finishes and superior structural properties.",
+      items: [
+        "Float", "Wave", "Ando",
+        "Manhattan", "Endless Fields",
+        "Asymetric", "Savannah",
+        "Urban Playground", "Visions of Johanna", "Awash"
+      ],
+      image: greyconImage
     },
     {
       name: "Cast Stone Panels",
-      description: "Material composed of binding agent, natural aggregates, and mineral additives that maintains durable physical properties exceeding those of natural stones.",
-      items: ["Sicily", "Guilienne", "Corfu", "Easy Jones", "Havana", "Mozart", "Rumbaba", "Stone Henge", "Woody Creek"],
-      image: cast
+      description:
+        "Material composed of binding agent, natural aggregates, and mineral additives that maintains durable physical properties exceeding those of natural stones.",
+      items: [
+        "Sicily", "Guilienne", "Corfu",
+        "Easy Jones", "Havana", "Mozart",
+        "Rumbaba", "Stone Henge", "Woody Creek"
+      ],
+      image: castImage
     }
-  ];
+  ]
 
-  const [selectedProduct, setSelectedProduct] = useState(0);
+  const [selectedProduct, setSelectedProduct] = useState(0)
 
   return (
     <section id="products" className="py-24 px-8 md:px-16 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16">
+
+          {/* Sidebar */}
           <div className="md:col-span-4">
-            <h2 className="font-bebas text-5xl tracking-wide mb-4">PRODUCT<br />SERIES</h2>
+            <h2 className="font-bebas text-5xl tracking-wide mb-4">
+              PRODUCT<br />SERIES
+            </h2>
             <div className="w-12 h-1 bg-pink mb-6"></div>
             <p className="text-sm mb-8">
-              Our product series represents the pinnacle of architectural concrete design, each with unique characteristics and applications.
+              Our product series represents the pinnacle of architectural
+              concrete design, each with unique characteristics and applications.
             </p>
-            
+
             <div className="space-y-4">
-              {productSeries.map((series, index) => (
-                <button 
-                  key={index}
-                  className={`block text-left w-full py-3 px-4 font-bebas text-xl tracking-wide border-l-4 ${selectedProduct === index ? 'border-pink bg-light-gray' : 'border-transparent hover:border-gray-300'}`}
-                  onClick={() => setSelectedProduct(index)}
+              {productSeries.map((series, i) => (
+                <button
+                  key={i}
+                  onClick={() => setSelectedProduct(i)}
+                  className={`block w-full text-left py-3 px-4 font-bebas text-xl tracking-wide
+                    border-l-4
+                    ${selectedProduct === i
+                      ? "border-pink bg-light-gray"
+                      : "border-transparent hover:border-gray-300"
+                    }`}
                 >
                   {series.name}
                 </button>
               ))}
             </div>
           </div>
-          
+
+          {/* Image + Details */}
           <div className="md:col-span-8 bg-light-gray">
-            <div className="h-96 relative overflow-hidden">
-              <img 
-                src={productSeries[selectedProduct].image} 
-                alt={productSeries[selectedProduct].name} 
-                className="absolute inset-0 w-full h-full object-cover object-center"
-                onError={(e) => {
-                  console.error('Image failed to load', e);
-                  e.target.style.backgroundColor = 'black';
-                }}
+            {/* 16:9 aspect-ratio box */}
+            <div className="w-full aspect-video relative overflow-hidden">
+              <img
+                src={productSeries[selectedProduct].image}
+                alt={productSeries[selectedProduct].name}
+                className="w-full h-full object-contain object-center"
               />
-              <div className="absolute inset-0 flex items-center justify-center bg-opacity-50">
-                {/* <h3 className="font-bebas text-5xl text-white">{productSeries[selectedProduct].name}</h3> */}
-              </div>
             </div>
-            
+
             <div className="p-8">
-              <p className="mb-8">{productSeries[selectedProduct].description}</p>
-              
+              <p className="mb-8">
+                {productSeries[selectedProduct].description}
+              </p>
+
               <h4 className="font-bebas text-xl mb-4">PRODUCT RANGE</h4>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {productSeries[selectedProduct].items.map((item, index) => (
-                  <div key={index} className="p-4 border border-gray-200 bg-white font-mono text-sm">
-                    {`${(index + 1).toString().padStart(2, '0')} ${item}`}
+                {productSeries[selectedProduct].items.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-4 border border-gray-200 bg-white font-mono text-sm"
+                  >
+                    {`${(idx + 1).toString().padStart(2, "0")} ${item}`}
                   </div>
                 ))}
               </div>
-              
-              <button className="mt-8 bg-white border-2 border-charcoal uppercase font-bold text-sm px-8 py-3 hover:bg-pink hover:text-white hover:border-pink transition-none">
+
+              <button className="mt-8 bg-white border-2 border-charcoal uppercase font-bold text-sm px-8 py-3
+                hover:bg-pink hover:text-white hover:border-pink transition-none"
+              >
                 View Products
               </button>
             </div>
           </div>
+
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 // Sustainability Section
 const SustainabilitySection = () => {
