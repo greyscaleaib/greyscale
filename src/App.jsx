@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import fractal from "./assets/fractal.jpg";
+import greycon from "./assets/greycon.jpg";
+import cast from "./assets/cast.jpg";
 
 // Main App Component
 const App = () => {
@@ -204,19 +207,19 @@ const ProductShowcase = () => {
       name: "Fractal Series",
       description: "Sculptural concrete tiles with distinctive geometric patterns that create dramatic shadows and textures.",
       items: ["Chisel", "PO-2", "Flamenco", "Piano", "Kingston Town", "Legion", "Otho", "Amazonia", "Jigsaw"],
-      image: "fractal-series-image"
+      image: fractal  // Ensure this is the correct imported image
     },
     {
       name: "GreyCon Panels",
       description: "Ultra High-Performance Concrete panels with smooth, elegant finishes and superior structural properties.",
       items: ["Float", "Wave", "Ando", "Manhattan", "Endless Fields", "Asymetric", "Savannah", "Urban Playground", "Visions of Johanna", "Awash"],
-      image: "greycon-panels-image"
+      image: greycon
     },
     {
       name: "Cast Stone Panels",
       description: "Material composed of binding agent, natural aggregates, and mineral additives that maintains durable physical properties exceeding those of natural stones.",
       items: ["Sicily", "Guilienne", "Corfu", "Easy Jones", "Havana", "Mozart", "Rumbaba", "Stone Henge", "Woody Creek"],
-      image: "cast-stone-panels-image"
+      image: cast
     }
   ];
 
@@ -247,9 +250,18 @@ const ProductShowcase = () => {
           </div>
           
           <div className="md:col-span-8 bg-light-gray">
-            <div className="h-96 bg-gray-300 relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <h3 className="font-bebas text-5xl text-white">{productSeries[selectedProduct].name}</h3>
+            <div className="h-96 relative overflow-hidden">
+              <img 
+                src={productSeries[selectedProduct].image} 
+                alt={productSeries[selectedProduct].name} 
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                onError={(e) => {
+                  console.error('Image failed to load', e);
+                  e.target.style.backgroundColor = 'black';
+                }}
+              />
+              <div className="absolute inset-0 flex items-center justify-center bg-opacity-50">
+                {/* <h3 className="font-bebas text-5xl text-white">{productSeries[selectedProduct].name}</h3> */}
               </div>
             </div>
             
