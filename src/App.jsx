@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // Main App Component
 const App = () => {
   return (
-    <div className="font-montserrat text-charcoal bg-white min-h-screen">
+    <div className="font-montserrat text-charcoal bg-white min-h-screen overflow-x-hidden"> {/* Added overflow-x-hidden */}
       <Navbar />
       <Hero />
       <MaterialsIntro />
@@ -21,18 +21,20 @@ const Navbar = () => {
   
   return (
     <nav className="fixed top-0 left-0 right-0 bg-white z-50 border-b border-gray-200">
-      <div className="flex justify-between items-center py-4 px-8 md:px-16">
+      <div className="flex justify-between items-center py-4 px-4 md:px-16"> {/* Reduced mobile padding */}
         <div className="flex items-center">
-          <span className="font-bebas text-3xl tracking-wider">
-            GREY<span className="text-pink">SCALE</span>
+          {/* Logo styling to match the provided image */}
+          <span className="font-black text-2xl md:text-3xl tracking-tight leading-none">
+            GREYSCALE<span className="align-top text-xs font-bold">TM</span>
           </span>
         </div>
         
-        <div className="hidden md:flex space-x-8 uppercase text-sm font-bold">
-          <a href="#materials" className="hover:border-b-2 hover:border-pink transition-none">Materials</a>
-          <a href="#products" className="hover:border-b-2 hover:border-pink transition-none">Products</a>
-          <a href="#sustainability" className="hover:border-b-2 hover:border-green transition-none">Sustainability</a>
-          <a href="#contact" className="hover:border-b-2 hover:border-pink transition-none">Contact</a>
+        <div className="hidden md:flex space-x-8">
+          {/* Using uppercase, black font weight for navigation items */}
+          <a href="#materials" className="uppercase text-sm font-black tracking-wide hover:border-b-2 hover:border-pink transition-none">Materials</a>
+          <a href="#products" className="uppercase text-sm font-black tracking-wide hover:border-b-2 hover:border-pink transition-none">Products</a>
+          <a href="#sustainability" className="uppercase text-sm font-black tracking-wide hover:border-b-2 hover:border-green transition-none">Sustainability</a>
+          <a href="#contact" className="uppercase text-sm font-black tracking-wide hover:border-b-2 hover:border-pink transition-none">Contact</a>
         </div>
         
         <div className="md:hidden cursor-pointer" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -44,11 +46,11 @@ const Navbar = () => {
       
       {isMenuOpen && (
         <div className="md:hidden bg-white w-full py-4 border-t border-gray-200">
-          <div className="flex flex-col uppercase text-sm font-bold px-8 space-y-4">
-            <a href="#materials" className="hover:border-b hover:border-pink transition-none py-2">Materials</a>
-            <a href="#products" className="hover:border-b hover:border-pink transition-none py-2">Products</a>
-            <a href="#sustainability" className="hover:border-b hover:border-green transition-none py-2">Sustainability</a>
-            <a href="#contact" className="hover:border-b hover:border-pink transition-none py-2">Contact</a>
+          <div className="flex flex-col uppercase px-4 space-y-4"> {/* Reduced mobile padding */}
+            <a href="#materials" className="text-sm font-black tracking-wide hover:border-b hover:border-pink transition-none py-2">Materials</a>
+            <a href="#products" className="text-sm font-black tracking-wide hover:border-b hover:border-pink transition-none py-2">Products</a>
+            <a href="#sustainability" className="text-sm font-black tracking-wide hover:border-b hover:border-green transition-none py-2">Sustainability</a>
+            <a href="#contact" className="text-sm font-black tracking-wide hover:border-b hover:border-pink transition-none py-2">Contact</a>
           </div>
         </div>
       )}
@@ -59,19 +61,35 @@ const Navbar = () => {
 // Hero Section
 const Hero = () => {
   return (
-    <section className="pt-32 pb-24 px-8 md:px-16 flex flex-col items-center justify-center min-h-screen relative bg-white overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[url('https://i.imgur.com/concrete-texture.jpg')] bg-cover"></div>
-      <div className="z-10 max-w-6xl mx-auto text-center">
-        <h1 className="font-bebas text-6xl md:text-9xl tracking-wide leading-none mb-8">
-          EVERY WALL<br />A WORK OF ART
-        </h1>
-        <div className="w-16 h-1 bg-pink mx-auto mb-8"></div>
-        <p className="max-w-2xl mx-auto text-lg md:text-xl">
-          GreyScale specializes in high-end architectural concrete solutions, elevating raw concrete to art form through innovative technology and design.
-        </p>
-        <button className="mt-12 bg-white border-2 border-charcoal uppercase font-bold text-sm px-10 py-3 hover:bg-pink hover:text-white hover:border-pink transition-none">
-          Explore Materials
-        </button>
+    <section className="pt-24 pb-16 md:py-0 px-4 md:px-0 flex flex-col md:flex-row items-center min-h-screen relative bg-white overflow-hidden">
+      <div className="md:w-1/2 h-full order-2 md:order-1 px-4 md:px-16 flex items-center">
+        <div className="max-w-lg pt-12 md:pt-0">
+          <h1 className="font-bebas text-5xl md:text-8xl tracking-wide leading-none mb-8">
+            EVERY WALL<br />A WORK OF ART
+          </h1>
+          <div className="w-16 h-1 bg-pink mb-8"></div>
+          <p className="mb-8 text-lg">
+            GreyScale specializes in high-end architectural concrete solutions, elevating raw concrete to art form through innovative technology and design.
+          </p>
+          <button className="bg-white border-2 border-charcoal uppercase font-bold text-sm px-10 py-3 hover:bg-pink hover:text-white hover:border-pink transition-none">
+            Explore Materials
+          </button>
+        </div>
+      </div>
+      
+      <div className="w-full md:w-1/2 h-80 md:h-screen order-1 md:order-2 relative overflow-hidden bg-light-blue">
+        <img 
+          src="https://hypeandhyper.com/content/images/2022/06/50890-wotruba-kirche-kirche-zur-heiligsten-dreifaltigkeit-19to1-scaled-1.jpeg" 
+          alt="Brutalist concrete architecture with angular forms against light blue sky" 
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-white via-transparent to-transparent md:bg-gradient-to-l md:from-transparent md:to-transparent z-10"></div>
+      </div>
+      
+      <div className="absolute bottom-8 right-8 z-20 hidden md:block">
+        <div className="font-mono text-xs text-charcoal bg-white bg-opacity-70 px-4 py-2">
+          Concrete. Refined.
+        </div>
       </div>
     </section>
   );
