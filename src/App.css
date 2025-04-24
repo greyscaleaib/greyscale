@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+/* Custom font imports */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=PT+Mono&display=swap');
+
+/* For Bebas Neue Pro Bold (fallback to standard Bebas Neue) */
+@font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 700;
+  src: url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+}
+
+/* Base styles */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 700;
+  }
+  
+  body {
+    font-family: 'Montserrat', sans-serif;
+    @apply bg-[#F5F5F5] text-[#333333];
+  }
+  
+  .font-mono {
+    font-family: 'PT Mono', monospace;
+  }
+}
